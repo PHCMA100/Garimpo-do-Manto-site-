@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garimpo do Manto — Camisas de futebol</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --earth-900:#FFFFFF;
+    --earth-800:#FFFDF7;
+    --earth-700:#FBF3D9;
+    --parchment:#FFFFFF;
+    --parchment-dim:#6B5D3E;
+    --ore-gold:#F2C230;
+    --ore-gold-bright:#D9A017;
+    --rust:#D9A017;
+    --pitch-green:#F2C230;
+    --ink:#241C10;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3, .stamp{
+    font-family:'Oswald', sans-serif;
+    font-weight:600;
+    letter-spacing:0.2px;
+  }
+
+  a{color:inherit; text-decoration:none;}
+
+  img{max-width:100%; display:block;}
+
+  .container{
+    max-width:1100px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--earth-900);
+    border-bottom:2px solid var(--ore-gold);
+  }
+  .nav-inner{
+    display:flex; align-items:flex-start; justify-content:space-between;
+    padding:14px 24px;
+    max-width:1100px; margin:0 auto;
+    gap:16px;
+  }
+  .brand-block{
+    display:flex; flex-direction:column; gap:8px;
+  }
+  .brand{
+    color:var(--ink);
+    font-family:'Oswald', sans-serif;
+    font-weight:600;
+    font-size:1.3rem;
+    display:flex; align-items:center; gap:10px;
+  }
+  .brand-mark{
+    width:38px; height:38px; flex-shrink:0;
+    object-fit:contain;
+  }
+  .brand-search{
+    position:relative;
+    max-width:230px;
+  }
+  .brand-search input{
+    width:100%;
+    padding:8px 12px 8px 32px;
+    border:1px solid #E8D68A;
+    border-radius:20px;
+    background:#FFFDF3;
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:0.85rem;
+    outline:none;
+    transition:border-color .2s ease;
+  }
+  .brand-search input:focus{border-color:var(--ore-gold-bright);}
+  .brand-search svg{
+    position:absolute; left:10px; top:50%; transform:translateY(-50%);
+    width:14px; height:14px; color:var(--parchment-dim);
+    pointer-events:none;
+  }
+  nav ul{
+    list-style:none; display:flex; gap:28px;
+  }
+  nav a{
+    color:var(--parchment-dim);
+    font-size:0.92rem;
+    transition:color .2s ease;
+  }
+  nav a:hover{color:var(--ore-gold-bright);}
+  .nav-cta{
+    display:none;
+  }
+  .adm-gear-btn{
+    width:40px; height:40px;
+    border-radius:50%;
+    border:1px solid #E3D9BE;
+    background:#fff;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+    color:var(--parchment-dim);
+    transition:transform .3s ease, color .2s ease;
+  }
+  .adm-gear-btn:hover{color:var(--ore-gold-bright); transform:rotate(35deg);}
+  .adm-gear-btn svg{width:20px; height:20px;}
+  @media (min-width:720px){
+    .nav-cta{
+      display:inline-block;
+      background:var(--ore-gold);
+      color:var(--ink);
+      padding:9px 18px;
+      border-radius:3px;
+      font-weight:600;
+      font-size:0.88rem;
+    }
+  }
+  .mobile-nav-links{display:none;}
+  @media (max-width:719px){
+    nav ul{display:none;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    color:#fff;
+    padding:100px 24px 110px;
+    text-align:center;
+    overflow:hidden;
+    isolation:isolate;
+  }
+  .hero-bg{
+    position:absolute; inset:0;
+    z-index:-2;
+  }
+  .hero-bg img{width:100%; height:100%; display:block; object-fit:cover; object-position:center;}
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    z-index:-1;
+    background:linear-gradient(180deg, rgba(20,15,8,0.35) 0%, rgba(20,15,8,0.55) 55%, rgba(20,15,8,0.82) 100%);
+    pointer-events:none;
+  }
+  .hero-inner{
+    position:relative;
+    max-width:680px;
+    margin:0 auto;
+    animation: rise 0.9s ease-out;
+  }
+  @keyframes rise{
+    from{opacity:0; transform:translateY(14px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  .eyebrow-tag{
+    display:inline-block;
+    border:1px dashed var(--ore-gold);
+    color:var(--ore-gold-bright);
+    padding:5px 14px;
+    border-radius:20px;
+    font-size:0.78rem;
+    margin-bottom:22px;
+    transform:rotate(-1.5deg);
+    background:rgba(20,15,8,0.35);
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 7vw, 4.2rem);
+    color:var(--ore-gold-bright);
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.4);
+    line-height:1.1;
+    margin-bottom:18px;
+  }
+  .hero p{
+    color:#EFE6D3;
+    font-size:1.08rem;
+    max-width:480px;
+    margin:0 auto 34px;
+  }
+  .btn-whatsapp{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:#3DA35D;
+    color:#fff;
+    padding:15px 30px;
+    border-radius:6px;
+    font-weight:600;
+    font-size:1.02rem;
+    box-shadow:0 6px 18px rgba(61,163,93,0.35);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .btn-whatsapp:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 22px rgba(61,163,93,0.45);
+  }
+  .btn-whatsapp svg{width:22px; height:22px; flex-shrink:0;}
+
+  .hero-sub{
+    margin-top:16px;
+    font-size:0.85rem;
+    color:#EFE6D3;
+    opacity:0.8;
+  }
+
+  /* ---------- FAIXA GIRATÓRIA ---------- */
+  .ticker-bar{
+    background:var(--ink);
+    overflow:hidden;
+    padding:14px 0;
+  }
+  .ticker-track{
+    display:flex;
+    width:max-content;
+    animation:ticker-scroll 18s linear infinite;
+  }
+  .ticker-track span{
+    display:inline-flex;
+    align-items:center;
+    gap:14px;
+    font-family:'Oswald', sans-serif;
+    font-weight:600;
+    font-size:0.95rem;
+    letter-spacing:1.5px;
+    color:var(--parchment);
+    text-transform:uppercase;
+    padding:0 18px;
+    white-space:nowrap;
+  }
+  .ticker-track span .dot{color:var(--ore-gold-bright);}
+  @keyframes ticker-scroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* ---------- SECTIONS GENERIC ---------- */
+  section{padding:72px 0;}
+  .section-head{
+    max-width:560px;
+    margin:0 auto 44px;
+    text-align:center;
+  }
+  .section-head h2{
+    font-size:clamp(1.8rem,4vw,2.4rem);
+    color:var(--earth-900);
+    margin-bottom:12px;
+  }
+  .section-head p{color:#5B4C3A; font-size:1rem;}
+
+  /* ---------- COMO FUNCIONA ---------- */
+  .como-funciona{background:#FBF3D9; color:var(--ink);}
+  .como-funciona .section-head h2{color:var(--ink);}
+  .como-funciona .section-head p{color:var(--parchment-dim);}
+  .paths{
+    display:grid;
+    gap:24px;
+    grid-template-columns:1fr;
+  }
+  @media (min-width:720px){
+    .paths{grid-template-columns:1fr 1fr;}
+  }
+  .path-card{
+    background:#FFFFFF;
+    border:1px solid #EBD9A0;
+    border-left:4px solid var(--ore-gold-bright);
+    padding:30px 26px;
+    border-radius:4px;
+  }
+  .path-card h3{
+    font-size:1.3rem;
+    color:var(--ore-gold-bright);
+    margin-bottom:10px;
+  }
+  .path-card p{color:var(--parchment-dim); font-size:0.95rem;}
+
+  /* ---------- CATÁLOGO (estilo loja, 2 colunas) ---------- */
+  .catalogo{background:var(--parchment);}
+
+  .product-toolbar{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+  }
+  .filter-chip{
+    padding:10px 20px;
+    border-radius:24px;
+    font-weight:700;
+    font-size:0.95rem;
+    border:1px solid #E3D9BE;
+    background:#fff;
+    color:#3B6FD9;
+    transition:all .15s ease;
+  }
+  .filter-chip.active{
+    background:var(--ink);
+    color:#fff;
+    border-color:var(--ink);
+  }
+  .sort-select{
+    margin-left:auto;
+    appearance:none;
+    -webkit-appearance:none;
+    background:#F4F0E4 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23241C10" stroke-width="2"><path d="M7 10l5 5 5-5"/></svg>') no-repeat right 14px center;
+    background-size:16px;
+    border:1px solid #E3D9BE;
+    border-radius:24px;
+    padding:11px 42px 11px 18px;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-weight:600;
+    font-size:0.92rem;
+    color:var(--ink);
+    width:100%;
+  }
+  @media (min-width:520px){ .sort-select{width:auto; min-width:140px;} }
+
+  .product-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px 12px;
+  }
+
+  .product-card{
+    background:#fff;
+    border:1px solid #ECE3CB;
+    border-radius:14px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .product-image{
+    position:relative;
+    aspect-ratio:1/1.05;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 14px),
+      linear-gradient(160deg, #2E2417, var(--ink) 70%);
+  }
+  .product-image .jersey-icon{width:52%; height:52%;}
+  .product-image img{width:100%; height:100%; object-fit:cover; display:block;}
+
+  .badge-disponivel{
+    position:absolute;
+    top:10px; left:10px;
+    background:var(--ore-gold);
+    color:var(--ink);
+    font-size:0.68rem;
+    font-weight:700;
+    letter-spacing:0.4px;
+    padding:6px 10px;
+    border-radius:20px;
+  }
+
+  .product-info{
+    padding:14px 12px 16px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .product-name{
+    font-family:'IBM Plex Sans', sans-serif;
+    font-weight:700;
+    font-size:0.98rem;
+    color:var(--ink);
+    line-height:1.25;
+    min-height:2.5em;
+  }
+  .product-price{
+    font-family:'Oswald', sans-serif;
+    font-weight:600;
+    font-size:1.35rem;
+    color:var(--ink);
+  }
+  .sizes-label{
+    font-size:0.78rem;
+    color:var(--parchment-dim);
+  }
+  .size-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-bottom:4px;
+  }
+  .size-chip{
+    min-width:34px;
+    text-align:center;
+    padding:6px 4px;
+    border:1.5px solid var(--ink);
+    border-radius:6px;
+    font-size:0.78rem;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .size-chip.unavailable{
+    border-color:#D8D0BC;
+    color:#C4BCA6;
+    text-decoration:line-through;
+  }
+  .cta-button{
+    display:block;
+    text-align:center;
+    background:var(--ink);
+    color:#fff;
+    font-weight:700;
+    font-size:0.85rem;
+    letter-spacing:0.4px;
+    padding:14px 10px;
+    border-radius:8px;
+    margin-top:6px;
+    transition:background .15s ease;
+  }
+  .cta-button:hover{background:#3A2C18;}
+
+  .catalogo-note{
+    max-width:560px;
+    margin:32px auto 0;
+    text-align:center;
+    font-size:0.88rem;
+    color:#7A6A52;
+    border-top:1px dashed #C9BB98;
+    padding-top:20px;
+  }
+
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--earth-900);
+    color:var(--parchment-dim);
+    padding:48px 0 28px;
+    border-top:3px solid var(--ore-gold);
+  }
+  .footer-inner{
+    display:flex; flex-wrap:wrap;
+    gap:28px;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:32px;
+  }
+  .footer-brand{
+    font-family:'Oswald', sans-serif;
+    font-weight:600;
+    color:var(--ore-gold-bright);
+    font-size:1.15rem;
+    margin-bottom:8px;
+  }
+  .footer-col p, .footer-col a{
+    font-size:0.88rem;
+    color:var(--parchment-dim);
+    display:block;
+    margin-bottom:6px;
+  }
+  .footer-col a:hover{color:var(--ore-gold-bright);}
+  .footer-bottom{
+    border-top:1px solid #45362522;
+    padding-top:18px;
+    text-align:center;
+    font-size:0.78rem;
+    color:#8A7A62;
+  }
+
+  /* ---------- UNIVERSO DA MARCA ---------- */
+  .universo-wrap{padding:56px 24px; background:var(--parchment);}
+  .universo-card{
+    max-width:1100px;
+    margin:0 auto;
+    position:relative;
+    border-radius:20px;
+    overflow:hidden;
+    min-height:320px;
+    display:flex;
+    align-items:center;
+    padding:44px 32px;
+    isolation:isolate;
+  }
+  .universo-card img{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    z-index:-2;
+  }
+  .universo-card::before{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(100deg, rgba(14,11,7,0.92) 30%, rgba(14,11,7,0.55) 100%);
+    z-index:-1;
+  }
+  .universo-eyebrow{
+    color:var(--ore-gold-bright);
+    font-size:0.8rem;
+    font-weight:700;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:14px;
+    display:block;
+  }
+  .universo-card h2{
+    color:#fff;
+    font-size:clamp(1.9rem,4.5vw,2.6rem);
+    margin-bottom:14px;
+    max-width:420px;
+  }
+  .universo-card p{
+    color:#DCD3BF;
+    max-width:400px;
+    margin-bottom:24px;
+    font-size:0.98rem;
+  }
+  .universo-card .btn-explore{
+    display:inline-block;
+    background:var(--ore-gold);
+    color:var(--ink);
+    padding:12px 26px;
+    border-radius:6px;
+    font-weight:700;
+    font-size:0.9rem;
+  }
+
+  /* ---------- MODAIS (produto e admin) ---------- */
+  .modal-overlay{
+    position:fixed; inset:0;
+    background:rgba(20,15,8,0.6);
+    display:none;
+    align-items:flex-end;
+    justify-content:center;
+    z-index:100;
+    padding:0;
+  }
+  .modal-overlay.open{display:flex;}
+  @media (min-width:720px){
+    .modal-overlay{align-items:center; padding:24px;}
+  }
+  .modal-box{
+    background:#fff;
+    width:100%;
+    max-width:520px;
+    max-height:88vh;
+    overflow-y:auto;
+    border-radius:20px 20px 0 0;
+    padding:26px 22px 32px;
+    position:relative;
+  }
+  @media (min-width:720px){
+    .modal-box{border-radius:16px; padding:32px;}
+  }
+  .modal-close{
+    position:absolute; top:16px; right:16px;
+    width:34px; height:34px;
+    border-radius:50%;
+    background:#F4F0E4;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--ink);
+    font-size:1.1rem;
+    line-height:1;
+  }
+  .modal-box h3{font-size:1.3rem; margin-bottom:6px; padding-right:36px;}
+  .modal-box .modal-sub{color:var(--parchment-dim); font-size:0.88rem; margin-bottom:20px;}
+
+  /* produto: modal de detalhe */
+  .produto-modal-img{
+    width:100%; aspect-ratio:1/0.85;
+    border-radius:12px;
+    overflow:hidden;
+    background:linear-gradient(160deg, #2E2417, var(--ink) 70%);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:18px;
+  }
+  .produto-modal-img img{width:100%; height:100%; object-fit:cover;}
+  .produto-modal-img .jersey-icon{width:44%; height:44%;}
+  .produto-modal-preco{font-family:'Oswald',sans-serif; font-weight:600; font-size:1.5rem; margin-bottom:4px;}
+  .produto-modal-preco .old{
+    font-family:'IBM Plex Sans', sans-serif;
+    font-weight:400;
+    font-size:0.95rem;
+    color:#A99A7C;
+    text-decoration:line-through;
+    margin-left:8px;
+  }
+  .produto-modal-secao-label{
+    font-weight:700; font-size:0.85rem; margin:18px 0 8px;
+    text-transform:uppercase; letter-spacing:0.5px; color:var(--parchment-dim);
+  }
+  .produto-modal-tamanhos{display:flex; flex-wrap:wrap; gap:8px;}
+  .produto-modal-tamanhos button{
+    min-width:44px; padding:9px 6px;
+    border:1.5px solid var(--ink);
+    border-radius:8px;
+    background:#fff;
+    font-weight:700;
+    font-size:0.85rem;
+    color:var(--ink);
+  }
+  .produto-modal-tamanhos button.selecionado{
+    background:var(--ink); color:#fff;
+  }
+  .produto-modal-tamanhos button.unavailable{
+    border-color:#D8D0BC; color:#C4BCA6; text-decoration:line-through;
+  }
+  .produto-modal-historia{font-size:0.92rem; color:#5B4C3A; line-height:1.65;}
+  .produto-modal-cta{
+    display:block; text-align:center; margin-top:22px;
+    background:#3DA35D; color:#fff; padding:15px; border-radius:8px; font-weight:700;
+  }
+
+  /* admin: login */
+  .adm-field{margin-bottom:14px;}
+  .adm-field label{display:block; font-size:0.82rem; font-weight:600; margin-bottom:5px; color:var(--parchment-dim);}
+  .adm-field input, .adm-field select, .adm-field textarea{
+    width:100%; padding:11px 12px;
+    border:1px solid #E3D9BE; border-radius:8px;
+    font-family:'IBM Plex Sans', sans-serif; font-size:0.92rem;
+    color:var(--ink); background:#FFFDF7;
+  }
+  .adm-field textarea{resize:vertical; min-height:70px;}
+  .adm-checkbox{display:flex; align-items:center; gap:8px; font-size:0.88rem; margin-bottom:14px;}
+  .adm-btn{
+    width:100%; padding:13px; border-radius:8px;
+    background:var(--ink); color:#fff; font-weight:700; font-size:0.92rem;
+    margin-top:6px;
+  }
+  .adm-btn.secondary{background:#F4F0E4; color:var(--ink);}
+  .adm-btn.danger{background:#B9432E; color:#fff;}
+  .adm-error{color:#B9432E; font-size:0.85rem; margin-top:10px; display:none;}
+  .adm-error.show{display:block;}
+
+  /* admin: painel */
+  .adm-tabs{display:flex; gap:6px; margin-bottom:20px; flex-wrap:wrap;}
+  .adm-tab{
+    padding:8px 14px; border-radius:20px; font-size:0.82rem; font-weight:700;
+    background:#F4F0E4; color:var(--parchment-dim);
+  }
+  .adm-tab.active{background:var(--ink); color:#fff;}
+  .adm-tabpanel{display:none;}
+  .adm-tabpanel.active{display:block;}
+  .adm-tamanho-list{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px;}
+  .adm-tamanho-chip{
+    display:flex; align-items:center; gap:6px;
+    background:#F4F0E4; padding:6px 10px; border-radius:16px; font-size:0.82rem; font-weight:600;
+  }
+  .adm-tamanho-chip button{color:#B9432E; font-weight:900;}
+  .adm-produto-linha{
+    display:flex; align-items:center; gap:12px;
+    padding:10px 0; border-bottom:1px solid #F0E9D3;
+  }
+  .adm-produto-linha img, .adm-produto-linha .adm-thumb-icon{
+    width:44px; height:44px; border-radius:8px; object-fit:cover; flex-shrink:0;
+    background:linear-gradient(160deg, #2E2417, var(--ink) 70%);
+  }
+  .adm-produto-linha .info{flex:1; min-width:0;}
+  .adm-produto-linha .info strong{display:block; font-size:0.88rem;}
+  .adm-produto-linha .info span{font-size:0.78rem; color:var(--parchment-dim);}
+  .adm-produto-linha .acoes{display:flex; gap:6px;}
+  .adm-produto-linha .acoes button{
+    font-size:0.78rem; font-weight:700; padding:6px 10px; border-radius:6px;
+  }
+  .adm-produto-linha .acoes .editar{background:#F4F0E4; color:var(--ink);}
+  .adm-produto-linha .acoes .excluir{background:#F7E4DF; color:#B9432E;}
+  .adm-fotos-preview{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;}
+  .adm-fotos-preview img{width:56px; height:56px; object-fit:cover; border-radius:6px;}
+  .adm-loading{font-size:0.85rem; color:var(--parchment-dim); text-align:center; padding:20px 0;}
+  .adm-userbar{display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;}
+  .adm-userbar button{font-size:0.8rem; font-weight:700; color:#B9432E;}
+
+
+  .floating-wa{
+    position:fixed;
+    bottom:20px; right:20px;
+    background:#3DA35D;
+    width:58px; height:58px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 6px 16px rgba(0,0,0,0.3);
+    z-index:60;
+    transition:transform .2s ease;
+  }
+  .floating-wa:hover{transform:scale(1.08);}
+  .floating-wa svg{width:28px; height:28px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <div class="brand-block">
+      <div class="brand">
+        <img class="brand-mark" src="assets/logo-leao.png" alt="Logo Garimpo do Manto">
+        Garimpo do Manto
+      </div>
+      <div class="brand-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="site-search" type="text" placeholder="Buscar seu time...">
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#como-funciona">Como funciona</a></li>
+        <li><a href="#catalogo">Catálogo</a></li>
+      </ul>
+    </nav>
+    <a class="nav-cta" id="wa-nav" href="#" target="_blank" rel="noopener">Falar no WhatsApp</a>
+    <button class="adm-gear-btn" id="btn-abrir-adm" aria-label="Área do administrador">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+    </button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-bg">
+    <img src="assets/hero-estadio.jpg" alt="Campo de futebol à noite" loading="eager">
+  </div>
+  <div class="hero-inner">
+    <span class="eyebrow-tag">achado garantido</span>
+    <h1>Garimpo do Manto</h1>
+    <p>Cada camisa é um achado. A gente garimpa o manto certo pra você vestir a sua torcida — pronta entrega, direto pra você.</p>
+    <a class="btn-whatsapp" id="wa-hero" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.78 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.83 14.06c-.24.68-1.4 1.31-1.93 1.39-.5.08-1.13.11-1.82-.11-.42-.14-.96-.31-1.65-.61-2.9-1.25-4.79-4.17-4.94-4.36-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.26-.28.57-.36.76-.36.19 0 .38 0 .55.01.18.01.42-.07.65.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.16-.3.36-.42.49-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.89 1.05.94 1.94 1.23 2.21 1.37.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.18-.28.36-.23.6-.14.24.09 1.53.72 1.79.85.26.14.44.2.5.32.06.11.06.65-.18 1.33z"/></svg>
+      Chamar no WhatsApp
+    </a>
+    <div class="hero-sub">Resposta rápida — direto no seu celular.</div>
+  </div>
+</section>
+
+<div class="ticker-bar">
+  <div class="ticker-track">
+    <span>Futebol <span class="dot">•</span> Camisetas 1:1 <span class="dot">•</span> Garimpo do Manto <span class="dot">•</span></span>
+    <span>Futebol <span class="dot">•</span> Camisetas 1:1 <span class="dot">•</span> Garimpo do Manto <span class="dot">•</span></span>
+    <span>Futebol <span class="dot">•</span> Camisetas 1:1 <span class="dot">•</span> Garimpo do Manto <span class="dot">•</span></span>
+    <span>Futebol <span class="dot">•</span> Camisetas 1:1 <span class="dot">•</span> Garimpo do Manto <span class="dot">•</span></span>
+  </div>
+</div>
+
+<div class="universo-wrap">
+  <div class="universo-card">
+    <img src="assets/hero-estadio.jpg" alt="">
+    <div>
+      <span class="universo-eyebrow">O universo Garimpo do Manto</span>
+      <h2>Vista o que te move.</h2>
+      <p>Futebol de verdade, camisas de verdade — pra quem não precisa explicar a própria torcida.</p>
+      <a class="btn-explore" href="#catalogo">Explorar catálogo</a>
+    </div>
+  </div>
+</div>
+
+<section id="como-funciona" class="como-funciona">
+  <div class="container">
+    <div class="section-head">
+      <h2>Como funciona o garimpo</h2>
+      <p>É simples fechar o seu manto.</p>
+    </div>
+    <div class="paths">
+      <div class="path-card">
+        <h3>1. Garimpe no catálogo</h3>
+        <p>Já temos camisas garimpadas em estoque, prontas pra sair. Busque pelo nome do time ou dê uma olhada no catálogo abaixo.</p>
+      </div>
+      <div class="path-card">
+        <h3>2. Feche no WhatsApp</h3>
+        <p>Encontrou o manto? Chama no WhatsApp com um clique para finalizar a compra.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="catalogo" class="catalogo">
+  <div class="container">
+    <div class="section-head">
+      <h2>Achados em estoque</h2>
+      <p>Alguns mantos que já estão garimpados e prontos pra ir com você.</p>
+    </div>
+    <div class="product-toolbar">
+      <button class="filter-chip active" data-filter="todos">Todos</button>
+      <button class="filter-chip" data-filter="futebol">Futebol</button>
+      <select class="sort-select" id="sort-select">
+        <option value="az">A – Z</option>
+        <option value="za">Z – A</option>
+        <option value="menor">Menor preço</option>
+        <option value="maior">Maior preço</option>
+      </select>
+    </div>
+    <div class="product-grid" id="tag-grid"></div>
+    <p class="catalogo-note">Fotos ilustrativas — troque pelas fotos reais das suas camisas antes de publicar o site.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <div class="footer-brand">Garimpo do Manto</div>
+        <p>Camisas de futebol garimpadas com carinho.</p>
+      </div>
+      <div class="footer-col">
+        <p>Fale com a gente</p>
+        <a id="wa-footer" href="#" target="_blank" rel="noopener">WhatsApp: (35) 9 8874-9710</a>
+      </div>
+      <div class="footer-col">
+        <p>Navegação</p>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#catalogo">Catálogo</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Garimpo do Manto. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+<a class="floating-wa" id="wa-float" href="#" target="_blank" rel="noopener" aria-label="Chamar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.78 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.83 14.06c-.24.68-1.4 1.31-1.93 1.39-.5.08-1.13.11-1.82-.11-.42-.14-.96-.31-1.65-.61-2.9-1.25-4.79-4.17-4.94-4.36-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.26-.28.57-.36.76-.36.19 0 .38 0 .55.01.18.01.42-.07.65.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.16-.3.36-.42.49-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.89 1.05.94 1.94 1.23 2.21 1.37.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.18-.28.36-.23.6-.14.24.09 1.53.72 1.79.85.26.14.44.2.5.32.06.11.06.65-.18 1.33z"/></svg>
+</a>
+
+<!-- MODAL: DETALHE DO PRODUTO -->
+<div class="modal-overlay" id="modal-produto">
+  <div class="modal-box">
+    <button class="modal-close" data-close="modal-produto">✕</button>
+    <div id="produto-modal-conteudo"></div>
+  </div>
+</div>
+
+<!-- MODAL: LOGIN DO ADMINISTRADOR -->
+<div class="modal-overlay" id="modal-adm-login">
+  <div class="modal-box">
+    <button class="modal-close" data-close="modal-adm-login">✕</button>
+    <h3>Área ADM</h3>
+    <p class="modal-sub">Área restrita. Entre com seu e-mail e senha de administrador.</p>
+    <div class="adm-field">
+      <label>E-mail</label>
+      <input type="email" id="adm-login-email" placeholder="seu@email.com">
+    </div>
+    <div class="adm-field">
+      <label>Senha</label>
+      <input type="password" id="adm-login-senha" placeholder="••••••••">
+    </div>
+    <button class="adm-btn" id="btn-fazer-login">Entrar</button>
+    <div class="adm-error" id="adm-login-erro">E-mail ou senha incorretos.</div>
+  </div>
+</div>
+
+<!-- MODAL: PAINEL DO ADMINISTRADOR -->
+<div class="modal-overlay" id="modal-adm-painel">
+  <div class="modal-box" style="max-width:640px;">
+    <button class="modal-close" data-close="modal-adm-painel">✕</button>
+    <div class="adm-userbar">
+      <h3 style="margin:0; padding:0;">Painel Garimpo do Manto</h3>
+      <button id="btn-logout-adm">Sair</button>
+    </div>
+    <div class="adm-tabs">
+      <button class="adm-tab active" data-tab="tab-produtos">Produtos</button>
+      <button class="adm-tab" data-tab="tab-novo-produto">Novo produto</button>
+      <button class="adm-tab" data-tab="tab-grupos">Grupos</button>
+      <button class="adm-tab" data-tab="tab-config">Configurações</button>
+    </div>
+
+    <!-- ABA: LISTA DE PRODUTOS -->
+    <div class="adm-tabpanel active" id="tab-produtos">
+      <div id="adm-lista-produtos"><div class="adm-loading">Carregando produtos…</div></div>
+    </div>
+
+    <!-- ABA: NOVO PRODUTO -->
+    <div class="adm-tabpanel" id="tab-novo-produto">
+      <div class="adm-field">
+        <label>Nome</label>
+        <input type="text" id="np-nome" placeholder="Ex: Camisa Time X Home 25/26">
+      </div>
+      <div class="adm-field">
+        <label>Grupo</label>
+        <select id="np-grupo"></select>
+      </div>
+      <div class="adm-field">
+        <label>Categoria</label>
+        <input type="text" id="np-categoria" placeholder="Ex: Nacionais, Retrô, Seleções...">
+      </div>
+      <div class="adm-field">
+        <label>Preço</label>
+        <input type="text" id="np-preco" placeholder="Ex: 89.99">
+      </div>
+      <div class="adm-field">
+        <label>Preço antigo · opcional</label>
+        <input type="text" id="np-preco-antigo" placeholder="Ex: 109.99">
+      </div>
+      <div class="adm-field">
+        <label>Fotos do produto</label>
+        <input type="file" id="np-fotos" accept="image/*" multiple>
+        <div class="adm-fotos-preview" id="np-fotos-preview"></div>
+      </div>
+      <div class="adm-field">
+        <label>Ou imagem por endereço · opcional</label>
+        <input type="text" id="np-imagem-url" placeholder="https://...">
+      </div>
+      <div class="adm-field">
+        <label>Descrição</label>
+        <textarea id="np-descricao" placeholder="Detalhes do produto"></textarea>
+      </div>
+      <div class="adm-field">
+        <label>História do manto · opcional</label>
+        <textarea id="np-historia" placeholder="Conte a história dessa camisa"></textarea>
+      </div>
+      <div class="adm-field">
+        <label>Tamanhos disponíveis</label>
+        <div class="adm-tamanho-list" id="np-tamanhos-lista"></div>
+        <div style="display:flex; gap:8px;">
+          <input type="text" id="np-tamanho-input" placeholder="Ex: GG" style="flex:1;">
+          <button class="adm-btn secondary" style="width:auto; padding:11px 16px;" id="btn-add-tamanho">+ Adicionar</button>
+        </div>
+      </div>
+      <button class="adm-btn" id="btn-salvar-produto">Adicionar produto</button>
+      <div class="adm-error" id="np-erro"></div>
+    </div>
+
+    <!-- ABA: GRUPOS -->
+    <div class="adm-tabpanel" id="tab-grupos">
+      <p class="modal-sub">Grupos organizam suas categorias (ex: grupo Futebol tem as categorias Nacionais, Estrangeiros...). Cada grupo decide se os produtos dele usam tamanho.</p>
+      <div id="adm-lista-grupos"></div>
+      <div class="adm-field" style="margin-top:16px;">
+        <label>Nome do grupo</label>
+        <input type="text" id="ng-nome" placeholder="Ex: Futebol">
+      </div>
+      <div class="adm-checkbox">
+        <input type="checkbox" id="ng-usa-tamanho" checked>
+        <label for="ng-usa-tamanho">Produtos deste grupo usam tamanho</label>
+      </div>
+      <button class="adm-btn" id="btn-add-grupo">+ Adicionar grupo</button>
+    </div>
+
+    <!-- ABA: CONFIGURAÇÕES -->
+    <div class="adm-tabpanel" id="tab-config">
+      <div class="adm-field">
+        <label>WhatsApp do vendedor</label>
+        <input type="text" id="cfg-whatsapp" placeholder="Ex: 5535988749710">
+      </div>
+      <div class="adm-field">
+        <label>Frase da marca</label>
+        <input type="text" id="cfg-frase" placeholder="Ex: Cada camisa é um achado.">
+      </div>
+      <button class="adm-btn" id="btn-salvar-config">Salvar configurações</button>
+      <hr style="margin:22px 0; border:none; border-top:1px solid #F0E9D3;">
+      <div class="adm-field">
+        <label>Nova senha ADM · opcional</label>
+        <input type="password" id="cfg-nova-senha" placeholder="••••••••">
+      </div>
+      <button class="adm-btn secondary" id="btn-atualizar-senha">Atualizar senha</button>
+      <div class="adm-error" id="cfg-erro"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // ══════════════════════════════════════════════════════════
+  // CONFIGURAÇÃO DO SUPABASE (seu banco de dados + login + fotos)
+  // Troque pelos dados do SEU projeto Supabase.
+  // Veja o passo a passo no arquivo "como-configurar-supabase.md".
+  // ══════════════════════════════════════════════════════════
+  const SUPABASE_URL = "https://doqkbbasdpsncwfqsjcx.supabase.co";
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRvcWtiYmFzZHBzbmN3ZnFzamN4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg4ODI3NTgsImV4cCI6MjEwNDQ1ODc1OH0.ZGsMSLRH-wPzf16Ai9gSjyEkv9wPupxgAy_TDrJDYAE";
+
+  let sb = null;
+  const supabaseConfigurado = SUPABASE_URL && !SUPABASE_URL.includes('COLE_AQUI') && window.supabase;
+  if (supabaseConfigurado) {
+    sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  }
+
+  // ---- CONFIGURAÇÃO GERAL (WHATSAPP) ----
+  let WHATSAPP_NUMBER = "5535988749710"; // (35) 9 8874-9710 — pode ser trocado pela aba Configurações do painel ADM
+
+  function waLink(message){
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  }
+
+  function atualizarLinksWhatsapp(){
+    const msg = "Olá! Vim do site Garimpo do Manto e quero saber mais sobre as camisas.";
+    ['wa-nav','wa-hero','wa-footer','wa-float'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.href = waLink(msg);
+    });
+    const fw = document.getElementById('wa-footer');
+    if (fw) fw.textContent = `WhatsApp: ${formatarTelefoneExibicao(WHATSAPP_NUMBER)}`;
+  }
+  function formatarTelefoneExibicao(numero){
+    const n = numero.replace(/\D/g,'');
+    if (n.length < 12) return numero;
+    return `(${n.slice(2,4)}) ${n.slice(4,5)} ${n.slice(5,9)}-${n.slice(9,13)}`;
+  }
+  atualizarLinksWhatsapp();
+
+  // ---- DADOS PADRÃO (usados enquanto o Supabase não está conectado) ----
+  let grupos = [
+    { id: 'g1', nome: 'Futebol', usa_tamanho: true },
+  ];
+  let produtos = [
+    { id: 'p1', nome: "Time da Casa — Camisa 1", grupo_id: 'g1', categoria: 'Nacionais', preco: 89.99, preco_antigo: null, imagens: [], descricao: '', historia: '', tamanhos: ['P','G','GG'], disponivel: true },
+    { id: 'p2', nome: "Time Visitante — Camisa 2", grupo_id: 'g1', categoria: 'Nacionais', preco: 89.99, preco_antigo: 109.99, imagens: [], descricao: '', historia: '', tamanhos: ['G','M'], disponivel: true },
+    { id: 'p3', nome: "Edição Retrô Clássica", grupo_id: 'g1', categoria: 'Retrô', preco: 99.99, preco_antigo: null, imagens: [], descricao: '', historia: '', tamanhos: ['P','M','GG'], disponivel: true },
+    { id: 'p4', nome: "Seleção — Camisa Titular", grupo_id: 'g1', categoria: 'Seleções', preco: 94.99, preco_antigo: null, imagens: [], descricao: '', historia: '', tamanhos: ['G','GG','2XG'], disponivel: true },
+    { id: 'p5', nome: "Time Europeu — Importada", grupo_id: 'g1', categoria: 'Estrangeiros', preco: 109.99, preco_antigo: null, imagens: [], descricao: '', historia: '', tamanhos: ['M','G'], disponivel: true },
+    { id: 'p6', nome: "Edição Especial Limitada", grupo_id: 'g1', categoria: 'Especiais', preco: 119.99, preco_antigo: null, imagens: [], descricao: '', historia: '', tamanhos: ['P','G'], disponivel: true },
+  ];
+  let filtroGrupoAtual = null; // null = "Todos"
+
+  const CORES_PLACEHOLDER = ['#C0392B','#1F6FB2','#2E7D4F','#8C4A2F','#5B2C6F','#212F3D'];
+  function corPlaceholder(id){
+    let hash = 0;
+    for (let i=0;i<String(id).length;i++) hash += String(id).charCodeAt(i);
+    return CORES_PLACEHOLDER[hash % CORES_PLACEHOLDER.length];
+  }
+
+  function jerseyIcon(cor){
+    return `<svg class="jersey-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <path d="M30 12 L10 26 L20 40 L28 34 L28 88 L72 88 L72 34 L80 40 L90 26 L70 12 L60 20 L40 20 Z"
+        fill="${cor}" stroke="#F5EFDC" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M40 20 Q50 28 60 20" fill="none" stroke="#F5EFDC" stroke-width="2.5"/>
+    </svg>`;
+  }
+
+  function formatPreco(v){
+    return Number(v || 0).toFixed(2).replace('.', ',');
+  }
+
+  function nomeGrupo(grupoId){
+    const g = grupos.find(g => g.id === grupoId);
+    return g ? g.nome : '';
+  }
+
+  // ---- CARREGAMENTO DE DADOS (Supabase ou fallback local) ----
+  async function carregarGrupos(){
+    if (!sb) return;
+    const { data, error } = await sb.from('groups').select('*').order('nome');
+    if (!error && data) grupos = data;
+  }
+
+  async function carregarProdutosPublicos(){
+    if (!sb) { renderFiltros(); renderCatalogo(produtosFiltradosOrdenados()); return; }
+    const { data, error } = await sb.from('products').select('*').eq('disponivel', true).order('nome');
+    if (!error && data) produtos = data;
+    renderFiltros();
+    renderCatalogo(produtosFiltradosOrdenados());
+  }
+
+  function produtosFiltradosOrdenados(termoBusca){
+    let lista = [...produtos];
+    if (filtroGrupoAtual) lista = lista.filter(p => p.grupo_id === filtroGrupoAtual);
+    if (termoBusca) lista = lista.filter(p => p.nome.toLowerCase().includes(termoBusca.toLowerCase()));
+    return lista;
+  }
+
+  // ---- FILTROS DINÂMICOS (um chip por grupo) ----
+  const toolbarFiltros = document.querySelector('.product-toolbar');
+  function renderFiltros(){
+    const chipsExistentes = toolbarFiltros.querySelectorAll('.filter-chip');
+    chipsExistentes.forEach(c => c.remove());
+    const chipTodos = document.createElement('button');
+    chipTodos.className = 'filter-chip' + (filtroGrupoAtual === null ? ' active' : '');
+    chipTodos.textContent = 'Todos';
+    chipTodos.addEventListener('click', () => { filtroGrupoAtual = null; renderFiltros(); renderCatalogo(produtosFiltradosOrdenados(searchInput.value)); });
+    toolbarFiltros.insertBefore(chipTodos, toolbarFiltros.firstChild);
+
+    grupos.forEach((g, i) => {
+      const chip = document.createElement('button');
+      chip.className = 'filter-chip' + (filtroGrupoAtual === g.id ? ' active' : '');
+      chip.textContent = g.nome;
+      chip.addEventListener('click', () => { filtroGrupoAtual = g.id; renderFiltros(); renderCatalogo(produtosFiltradosOrdenados(searchInput.value)); });
+      toolbarFiltros.insertBefore(chip, toolbarFiltros.children[i+1]);
+    });
+  }
+
+  // ---- RENDERIZA O GRID DO CATÁLOGO ----
+  const grid = document.getElementById('tag-grid');
+
+  function renderCatalogo(lista){
+    grid.innerHTML = '';
+    if (!lista.length){
+      grid.innerHTML = '<p style="grid-column:1/-1; text-align:center; color:var(--parchment-dim); padding:30px 0;">Nenhum produto encontrado.</p>';
+      return;
+    }
+    lista.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      const foto = (item.imagens && item.imagens[0]) ? item.imagens[0] : '';
+      const imagemHtml = foto
+        ? `<img src="${foto}" alt="${item.nome}" loading="lazy">`
+        : jerseyIcon(corPlaceholder(item.id));
+      const qtdTamanhos = (item.tamanhos || []).length;
+      card.innerHTML = `
+        <div class="product-image">
+          <span class="badge-disponivel">DISPONÍVEL</span>
+          ${imagemHtml}
+        </div>
+        <div class="product-info">
+          <h4 class="product-name">${item.nome}</h4>
+          <div class="product-price">
+            R$ ${formatPreco(item.preco)}
+            ${item.preco_antigo ? `<span style="font-size:0.85rem; color:#A99A7C; text-decoration:line-through; font-weight:400; margin-left:6px;">R$ ${formatPreco(item.preco_antigo)}</span>` : ''}
+          </div>
+          <div class="sizes-label">${qtdTamanhos} tamanho(s) disponível(is)</div>
+          <div class="size-row">${(item.tamanhos||[]).map(t=>`<span class="size-chip">${t}</span>`).join('')}</div>
+          <button class="cta-button" data-produto-id="${item.id}" style="width:100%; border:none; cursor:pointer;">VER PRODUTO</button>
+        </div>
+      `;
+      card.querySelector('.cta-button').addEventListener('click', () => abrirModalProduto(item));
+      grid.appendChild(card);
+    });
+  }
+
+  // ---- MODAL DE PRODUTO (cliente) ----
+  let tamanhoSelecionado = null;
+  function abrirModalProduto(item){
+    tamanhoSelecionado = null;
+    const g = grupos.find(g => g.id === item.grupo_id);
+    const usaTamanho = g ? g.usa_tamanho : true;
+    const foto = (item.imagens && item.imagens[0]) ? item.imagens[0] : '';
+
+    const conteudo = document.getElementById('produto-modal-conteudo');
+    conteudo.innerHTML = `
+      <div class="produto-modal-img">
+        ${foto ? `<img src="${foto}" alt="${item.nome}">` : jerseyIcon(corPlaceholder(item.id))}
+      </div>
+      <h3>${item.nome}</h3>
+      <div class="produto-modal-preco">
+        R$ ${formatPreco(item.preco)}
+        ${item.preco_antigo ? `<span class="old">R$ ${formatPreco(item.preco_antigo)}</span>` : ''}
+      </div>
+      ${item.descricao ? `<p style="font-size:0.9rem; color:#5B4C3A; margin-top:6px;">${item.descricao}</p>` : ''}
+      ${usaTamanho ? `
+        <div class="produto-modal-secao-label">Tamanhos</div>
+        <div class="produto-modal-tamanhos" id="produto-modal-tamanhos"></div>
+      ` : ''}
+      ${item.historia ? `
+        <div class="produto-modal-secao-label">História desse manto</div>
+        <p class="produto-modal-historia">${item.historia}</p>
+      ` : ''}
+      <button class="produto-modal-cta" id="produto-modal-comprar">Comprar com o vendedor · WhatsApp</button>
+    `;
+
+    if (usaTamanho){
+      const wrapTam = document.getElementById('produto-modal-tamanhos');
+      (item.tamanhos || []).forEach(t => {
+        const btn = document.createElement('button');
+        btn.textContent = t;
+        btn.addEventListener('click', () => {
+          tamanhoSelecionado = t;
+          wrapTam.querySelectorAll('button').forEach(b => b.classList.remove('selecionado'));
+          btn.classList.add('selecionado');
+        });
+        wrapTam.appendChild(btn);
+      });
+    }
+
+    document.getElementById('produto-modal-comprar').addEventListener('click', () => {
+      let msg = `Olá! Tenho interesse na camisa: ${item.nome}.`;
+      if (usaTamanho && tamanhoSelecionado) msg += ` Tamanho: ${tamanhoSelecionado}.`;
+      window.open(waLink(msg), '_blank');
+    });
+
+    document.getElementById('modal-produto').classList.add('open');
+  }
+
+  // ---- FECHAR MODAIS ----
+  document.querySelectorAll('.modal-close').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.getElementById(btn.dataset.close).classList.remove('open');
+    });
+  });
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) overlay.classList.remove('open');
+    });
+  });
+
+  // ---- ORDENAÇÃO ----
+  document.getElementById('sort-select').addEventListener('change', (e) => {
+    const modo = e.target.value;
+    const lista = produtosFiltradosOrdenados(searchInput.value);
+    if (modo === 'az') lista.sort((a, b) => a.nome.localeCompare(b.nome));
+    if (modo === 'za') lista.sort((a, b) => b.nome.localeCompare(a.nome));
+    if (modo === 'menor') lista.sort((a, b) => a.preco - b.preco);
+    if (modo === 'maior') lista.sort((a, b) => b.preco - a.preco);
+    renderCatalogo(lista);
+  });
+
+  // ---- BUSCA POR TIME ----
+  const searchInput = document.getElementById('site-search');
+  searchInput.addEventListener('input', (e) => {
+    renderCatalogo(produtosFiltradosOrdenados(e.target.value));
+  });
+
+  // ══════════════════════════════════════════════════════════
+  // ÁREA DO ADMINISTRADOR
+  // ══════════════════════════════════════════════════════════
+  const modalLogin = document.getElementById('modal-adm-login');
+  const modalPainel = document.getElementById('modal-adm-painel');
+
+  document.getElementById('btn-abrir-adm').addEventListener('click', async () => {
+    if (!supabaseConfigurado){
+      alert('O painel de administrador ainda não foi conectado. Veja o arquivo "como-configurar-supabase.md" para ativar.');
+      return;
+    }
+    const { data: { session } } = await sb.auth.getSession();
+    if (session) { abrirPainelAdm(); } else { modalLogin.classList.add('open'); }
+  });
+
+  document.getElementById('btn-fazer-login').addEventListener('click', async () => {
+    const email = document.getElementById('adm-login-email').value.trim();
+    const senha = document.getElementById('adm-login-senha').value;
+    const erroEl = document.getElementById('adm-login-erro');
+    erroEl.classList.remove('show');
+    try {
+      const { error } = await sb.auth.signInWithPassword({ email, password: senha });
+      if (error){
+        erroEl.textContent = 'Erro: ' + error.message;
+        erroEl.classList.add('show');
+        console.error('Login Supabase:', error);
+        return;
+      }
+      modalLogin.classList.remove('open');
+      abrirPainelAdm();
+    } catch (err){
+      erroEl.textContent = 'Erro de conexão: ' + err.message;
+      erroEl.classList.add('show');
+      console.error('Erro de conexão ao logar:', err);
+    }
+  });
+
+  document.getElementById('btn-logout-adm').addEventListener('click', async () => {
+    await sb.auth.signOut();
+    modalPainel.classList.remove('open');
+  });
+
+  // ---- ABAS DO PAINEL ----
+  document.querySelectorAll('.adm-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.adm-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.adm-tabpanel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.tab).classList.add('active');
+    });
+  });
+
+  async function abrirPainelAdm(){
+    modalPainel.classList.add('open');
+    await carregarGrupos();
+    popularSelectGrupos();
+    renderGruposAdm();
+    await carregarProdutosAdm();
+    await carregarConfigAdm();
+  }
+
+  // ---- LISTA DE PRODUTOS (admin, inclui indisponíveis) ----
+  async function carregarProdutosAdm(){
+    const container = document.getElementById('adm-lista-produtos');
+    container.innerHTML = '<div class="adm-loading">Carregando produtos…</div>';
+    if (!sb) { container.innerHTML = '<div class="adm-loading">Conecte o Supabase para gerenciar produtos.</div>'; return; }
+    const { data, error } = await sb.from('products').select('*').order('nome');
+    if (error){ container.innerHTML = '<div class="adm-loading">Erro ao carregar produtos.</div>'; return; }
+    produtosAdminCache = data || [];
+    container.innerHTML = '';
+    if (!produtosAdminCache.length){
+      container.innerHTML = '<div class="adm-loading">Nenhum produto cadastrado ainda.</div>';
+      return;
+    }
+    produtosAdminCache.forEach(p => {
+      const linha = document.createElement('div');
+      linha.className = 'adm-produto-linha';
+      const foto = (p.imagens && p.imagens[0]) ? p.imagens[0] : '';
+      linha.innerHTML = `
+        ${foto ? `<img src="${foto}">` : `<div class="adm-thumb-icon"></div>`}
+        <div class="info">
+          <strong>${p.nome}${p.disponivel ? '' : ' (oculto)'}</strong>
+          <span>R$ ${formatPreco(p.preco)} · ${nomeGrupo(p.grupo_id) || 'sem grupo'}</span>
+        </div>
+        <div class="acoes">
+          <button class="editar">Editar</button>
+          <button class="excluir">Excluir</button>
+        </div>
+      `;
+      linha.querySelector('.editar').addEventListener('click', () => carregarProdutoNoFormulario(p));
+      linha.querySelector('.excluir').addEventListener('click', () => excluirProduto(p.id));
+      container.appendChild(linha);
+    });
+  }
+  let produtosAdminCache = [];
+
+  async function excluirProduto(id){
+    if (!confirm('Tem certeza que quer excluir esse produto?')) return;
+    const { error } = await sb.from('products').delete().eq('id', id);
+    if (error){ alert('Erro ao excluir: ' + error.message); return; }
+    await carregarProdutosAdm();
+    await carregarProdutosPublicos();
+  }
+
+  // ---- FORMULÁRIO DE PRODUTO (criar/editar compartilhado) ----
+  let editandoProdutoId = null;
+  let formTamanhos = [];
+  let formImagensExistentes = [];
+  let formNovosArquivos = [];
+
+  function popularSelectGrupos(){
+    const sel = document.getElementById('np-grupo');
+    sel.innerHTML = grupos.map(g => `<option value="${g.id}">${g.nome}</option>`).join('');
+  }
+
+  function renderTamanhosForm(){
+    const wrap = document.getElementById('np-tamanhos-lista');
+    wrap.innerHTML = '';
+    formTamanhos.forEach((t, i) => {
+      const chip = document.createElement('span');
+      chip.className = 'adm-tamanho-chip';
+      chip.innerHTML = `${t} <button data-i="${i}">✕</button>`;
+      chip.querySelector('button').addEventListener('click', () => {
+        formTamanhos.splice(i, 1);
+        renderTamanhosForm();
+      });
+      wrap.appendChild(chip);
+    });
+  }
+
+  document.getElementById('btn-add-tamanho').addEventListener('click', () => {
+    const input = document.getElementById('np-tamanho-input');
+    const val = input.value.trim().toUpperCase();
+    if (val && !formTamanhos.includes(val)){
+      formTamanhos.push(val);
+      renderTamanhosForm();
+    }
+    input.value = '';
+  });
+
+  document.getElementById('np-fotos').addEventListener('change', (e) => {
+    formNovosArquivos = formNovosArquivos.concat(Array.from(e.target.files));
+    renderFotosPreview();
+  });
+
+  function renderFotosPreview(){
+    const wrap = document.getElementById('np-fotos-preview');
+    wrap.innerHTML = '';
+    formImagensExistentes.forEach((url, i) => {
+      const img = document.createElement('img');
+      img.src = url;
+      img.title = 'Clique para remover';
+      img.style.cursor = 'pointer';
+      img.addEventListener('click', () => { formImagensExistentes.splice(i,1); renderFotosPreview(); });
+      wrap.appendChild(img);
+    });
+    formNovosArquivos.forEach((file, i) => {
+      const img = document.createElement('img');
+      img.src = URL.createObjectURL(file);
+      img.title = 'Clique para remover';
+      img.style.cursor = 'pointer';
+      img.addEventListener('click', () => { formNovosArquivos.splice(i,1); renderFotosPreview(); });
+      wrap.appendChild(img);
+    });
+  }
+
+  function limparFormularioProduto(){
+    editandoProdutoId = null;
+    formTamanhos = [];
+    formImagensExistentes = [];
+    formNovosArquivos = [];
+    document.getElementById('np-nome').value = '';
+    document.getElementById('np-categoria').value = '';
+    document.getElementById('np-preco').value = '';
+    document.getElementById('np-preco-antigo').value = '';
+    document.getElementById('np-imagem-url').value = '';
+    document.getElementById('np-descricao').value = '';
+    document.getElementById('np-historia').value = '';
+    document.getElementById('np-fotos').value = '';
+    document.getElementById('np-erro').classList.remove('show');
+    document.getElementById('btn-salvar-produto').textContent = 'Adicionar produto';
+    const btnExcluir = document.getElementById('btn-excluir-produto-form');
+    if (btnExcluir) btnExcluir.remove();
+    renderTamanhosForm();
+    renderFotosPreview();
+  }
+
+  function carregarProdutoNoFormulario(p){
+    editandoProdutoId = p.id;
+    formTamanhos = [...(p.tamanhos || [])];
+    formImagensExistentes = [...(p.imagens || [])];
+    formNovosArquivos = [];
+    document.getElementById('np-nome').value = p.nome || '';
+    document.getElementById('np-grupo').value = p.grupo_id || '';
+    document.getElementById('np-categoria').value = p.categoria || '';
+    document.getElementById('np-preco').value = p.preco || '';
+    document.getElementById('np-preco-antigo').value = p.preco_antigo || '';
+    document.getElementById('np-imagem-url').value = '';
+    document.getElementById('np-descricao').value = p.descricao || '';
+    document.getElementById('np-historia').value = p.historia || '';
+    document.getElementById('np-fotos').value = '';
+    document.getElementById('btn-salvar-produto').textContent = 'Salvar alterações';
+    renderTamanhosForm();
+    renderFotosPreview();
+
+    if (!document.getElementById('btn-excluir-produto-form')){
+      const btn = document.createElement('button');
+      btn.id = 'btn-excluir-produto-form';
+      btn.className = 'adm-btn danger';
+      btn.style.marginTop = '10px';
+      btn.textContent = 'Excluir produto';
+      btn.addEventListener('click', () => excluirProduto(p.id));
+      document.getElementById('btn-salvar-produto').insertAdjacentElement('afterend', btn);
+    }
+
+    document.querySelectorAll('.adm-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.adm-tabpanel').forEach(p => p.classList.remove('active'));
+    document.querySelector('[data-tab="tab-novo-produto"]').classList.add('active');
+    document.getElementById('tab-novo-produto').classList.add('active');
+  }
+
+  document.getElementById('btn-salvar-produto').addEventListener('click', async () => {
+    const erroEl = document.getElementById('np-erro');
+    erroEl.classList.remove('show');
+    const nome = document.getElementById('np-nome').value.trim();
+    const preco = parseFloat(document.getElementById('np-preco').value.replace(',', '.'));
+    if (!nome || isNaN(preco)){
+      erroEl.textContent = 'Preencha ao menos o nome e o preço.';
+      erroEl.classList.add('show');
+      return;
+    }
+    const btnSalvar = document.getElementById('btn-salvar-produto');
+    btnSalvar.textContent = 'Salvando...';
+
+    try {
+      let urlsUpload = [];
+      for (const arquivo of formNovosArquivos){
+        const caminho = `${Date.now()}-${arquivo.name}`;
+        const { error: erroUpload } = await sb.storage.from('produtos-fotos').upload(caminho, arquivo);
+        if (erroUpload) throw erroUpload;
+        const { data: pub } = sb.storage.from('produtos-fotos').getPublicUrl(caminho);
+        urlsUpload.push(pub.publicUrl);
+      }
+      const imagemUrlManual = document.getElementById('np-imagem-url').value.trim();
+      const imagensFinais = [...formImagensExistentes, ...urlsUpload];
+      if (imagemUrlManual) imagensFinais.push(imagemUrlManual);
+
+      const payload = {
+        nome,
+        grupo_id: document.getElementById('np-grupo').value || null,
+        categoria: document.getElementById('np-categoria').value.trim(),
+        preco,
+        preco_antigo: document.getElementById('np-preco-antigo').value ? parseFloat(document.getElementById('np-preco-antigo').value.replace(',', '.')) : null,
+        imagens: imagensFinais,
+        descricao: document.getElementById('np-descricao').value.trim(),
+        historia: document.getElementById('np-historia').value.trim(),
+        tamanhos: formTamanhos,
+        disponivel: true,
+      };
+
+      let resultado;
+      if (editandoProdutoId){
+        resultado = await sb.from('products').update(payload).eq('id', editandoProdutoId);
+      } else {
+        resultado = await sb.from('products').insert(payload);
+      }
+      if (resultado.error) throw resultado.error;
+
+      limparFormularioProduto();
+      await carregarProdutosAdm();
+      await carregarProdutosPublicos();
+      document.querySelectorAll('.adm-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.adm-tabpanel').forEach(p => p.classList.remove('active'));
+      document.querySelector('[data-tab="tab-produtos"]').classList.add('active');
+      document.getElementById('tab-produtos').classList.add('active');
+    } catch (err){
+      erroEl.textContent = 'Erro ao salvar: ' + err.message;
+      erroEl.classList.add('show');
+    } finally {
+      btnSalvar.textContent = editandoProdutoId ? 'Salvar alterações' : 'Adicionar produto';
+    }
+  });
+
+  // ---- GRUPOS (admin) ----
+  function renderGruposAdm(){
+    const container = document.getElementById('adm-lista-grupos');
+    container.innerHTML = '';
+    grupos.forEach(g => {
+      const linha = document.createElement('div');
+      linha.className = 'adm-produto-linha';
+      linha.innerHTML = `
+        <div class="info">
+          <strong>${g.nome}</strong>
+          <span>${g.usa_tamanho ? 'Usa tamanho' : 'Não usa tamanho'}</span>
+        </div>
+        <div class="acoes"><button class="excluir">Excluir</button></div>
+      `;
+      linha.querySelector('.excluir').addEventListener('click', async () => {
+        if (!confirm('Excluir esse grupo? Os produtos dele ficarão sem grupo.')) return;
+        await sb.from('groups').delete().eq('id', g.id);
+        await carregarGrupos();
+        popularSelectGrupos();
+        renderGruposAdm();
+        renderFiltros();
+      });
+      container.appendChild(linha);
+    });
+  }
+
+  document.getElementById('btn-add-grupo').addEventListener('click', async () => {
+    const nome = document.getElementById('ng-nome').value.trim();
+    if (!nome) return;
+    const usaTamanho = document.getElementById('ng-usa-tamanho').checked;
+    const { error } = await sb.from('groups').insert({ nome, usa_tamanho: usaTamanho });
+    if (error){ alert('Erro ao adicionar grupo: ' + error.message); return; }
+    document.getElementById('ng-nome').value = '';
+    await carregarGrupos();
+    popularSelectGrupos();
+    renderGruposAdm();
+    renderFiltros();
+  });
+
+  // ---- CONFIGURAÇÕES (admin) ----
+  async function carregarConfigAdm(){
+    if (!sb) return;
+    const { data } = await sb.from('settings').select('*').eq('id', 1).maybeSingle();
+    if (data){
+      document.getElementById('cfg-whatsapp').value = data.whatsapp || '';
+      document.getElementById('cfg-frase').value = data.frase_marca || '';
+    }
+  }
+
+  document.getElementById('btn-salvar-config').addEventListener('click', async () => {
+    const whatsapp = document.getElementById('cfg-whatsapp').value.trim();
+    const frase = document.getElementById('cfg-frase').value.trim();
+    const { error } = await sb.from('settings').upsert({ id: 1, whatsapp, frase_marca: frase });
+    if (error){ alert('Erro ao salvar: ' + error.message); return; }
+    WHATSAPP_NUMBER = whatsapp || WHATSAPP_NUMBER;
+    atualizarLinksWhatsapp();
+    alert('Configurações salvas!');
+  });
+
+  document.getElementById('btn-atualizar-senha').addEventListener('click', async () => {
+    const novaSenha = document.getElementById('cfg-nova-senha').value;
+    const erroEl = document.getElementById('cfg-erro');
+    erroEl.classList.remove('show');
+    if (!novaSenha || novaSenha.length < 6){
+      erroEl.textContent = 'A senha precisa ter pelo menos 6 caracteres.';
+      erroEl.classList.add('show');
+      return;
+    }
+    const { error } = await sb.auth.updateUser({ password: novaSenha });
+    if (error){
+      erroEl.textContent = 'Erro: ' + error.message;
+      erroEl.classList.add('show');
+      return;
+    }
+    document.getElementById('cfg-nova-senha').value = '';
+    alert('Senha atualizada com sucesso!');
+  });
+
+  // ---- CARREGAMENTO INICIAL ----
+  (async function iniciar(){
+    if (supabaseConfigurado){
+      await carregarGrupos();
+      if (sb) {
+        const { data: cfg } = await sb.from('settings').select('*').eq('id', 1).maybeSingle();
+        if (cfg && cfg.whatsapp) { WHATSAPP_NUMBER = cfg.whatsapp; atualizarLinksWhatsapp(); }
+      }
+    }
+    renderFiltros();
+    await carregarProdutosPublicos();
+  })();
+</script>
+
+</body>
+</html>
+

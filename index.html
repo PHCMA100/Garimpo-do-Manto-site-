@@ -255,6 +255,25 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
   </div>
 </div>
 
+
+<section class="category-visuals" id="categorias">
+  <div class="category-grid">
+    <a class="category-card" href="#tag-grid"><img src="assets/brasileirao-card.jpg" alt="Brasileirão"></a>
+    <a class="category-card" href="#tag-grid"><img src="assets/europa-card.jpg" alt="Europa"></a>
+    <a class="category-card" href="#tag-grid"><img src="assets/retros-card.jpg" alt="Retros"></a>
+    <a class="category-card" href="#tag-grid"><img src="assets/selecoes-card.jpg" alt="Seleções"></a>
+  </div>
+</section>
+<style>
+.category-visuals{padding:18px 24px 8px;background:#fff}
+.category-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.category-card{display:block;overflow:hidden;border-radius:10px;background:#111;aspect-ratio:448/275}
+.category-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease}
+.category-card:hover img{transform:scale(1.025)}
+@media(max-width:900px){.category-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.category-visuals{padding:10px}.category-grid{gap:6px}}
+</style>
+
 <section id="catalogo" class="catalogo">
   <div class="container">
     <div class="section-head">

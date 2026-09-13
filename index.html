@@ -120,6 +120,10 @@ section{padding:88px 0}
 .product-card:hover .product-image img{transform:scale(1.035)}
 .product-image .jersey-icon{width:45%;height:45%}
 .badge-disponivel{position:absolute;top:12px;left:12px;z-index:2;background:#fff;color:#111;padding:6px 9px;font-size:9px;font-weight:800;letter-spacing:.8px}
+.badge-esgotado{position:absolute;top:12px;left:12px;z-index:2;background:#B9432E;color:#fff;padding:6px 9px;font-size:9px;font-weight:800;letter-spacing:.8px}
+.produto-esgotado{opacity:.55}
+.produto-esgotado .product-image img{filter:grayscale(60%)}
+.produto-esgotado .cta-button{background:#ccc!important;color:#555!important;cursor:default}
 .product-info{padding:13px 2px 8px;display:block}
 .product-name{font-size:13px;font-weight:700;line-height:1.35;min-height:36px}
 .product-price{font-size:14px;font-weight:800;margin-top:8px}
@@ -374,6 +378,7 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
       <div class="adm-field"><label>Categoria</label><input type="text" id="np-categoria" placeholder="Ex: Nacionais, Retrô, Seleções..."></div>
       <div class="adm-field"><label>Preço</label><input type="text" id="np-preco" placeholder="Ex: 89.99"></div>
       <div class="adm-field"><label>Preço antigo · opcional</label><input type="text" id="np-preco-antigo" placeholder="Ex: 109.99"></div>
+      <div class="adm-checkbox"><input type="checkbox" id="np-em-estoque" checked><label for="np-em-estoque">Em estoque (desmarque para mostrar como ESGOTADO)</label></div>
       <div class="adm-field"><label>Fotos do produto</label><input type="file" id="np-fotos" accept="image/*" multiple><div class="adm-fotos-preview" id="np-fotos-preview"></div></div>
       <div class="adm-field"><label>Ou imagem por endereço · opcional</label><input type="text" id="np-imagem-url" placeholder="https://..."></div>
       <div class="adm-field"><label>Descrição</label><textarea id="np-descricao" placeholder="Detalhes do produto"></textarea></div>
@@ -494,6 +499,8 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
     let lista = [...produtos];
     if (filtroGrupoAtual) lista = lista.filter(p => p.grupo_id === filtroGrupoAtual);
     if (termoBusca) lista = lista.filter(p => p.nome.toLowerCase().includes(termoBusca.toLowerCase()));
+    // Esgotados sempre por último, independente da ordenação escolhida
+    lista.sort((a, b) => (a.em_estoque === false ? 1 : 0) - (b.em_estoque === false ? 1 : 0));
     return lista;
   }
 
@@ -528,7 +535,8 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
     }
     lista.forEach(item => {
       const card = document.createElement('div');
-      card.className = 'product-card';
+      const esgotado = item.em_estoque === false;
+      card.className = 'product-card' + (esgotado ? ' produto-esgotado' : '');
       const foto = (item.imagens && item.imagens[0]) ? item.imagens[0] : '';
       const imagemHtml = foto
         ? `<img src="${foto}" alt="${item.nome}" loading="lazy">`
@@ -536,7 +544,7 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
       const qtdTamanhos = (item.tamanhos || []).length;
       card.innerHTML = `
         <div class="product-image">
-          <span class="badge-disponivel">DISPONÍVEL</span>
+          <span class="${esgotado ? 'badge-esgotado' : 'badge-disponivel'}">${esgotado ? 'ESGOTADO' : 'DISPONÍVEL'}</span>
           ${imagemHtml}
         </div>
         <div class="product-info">
@@ -547,7 +555,7 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
           </div>
           <div class="sizes-label">${qtdTamanhos} tamanho(s) disponível(is)</div>
           <div class="size-row">${(item.tamanhos||[]).map(t=>`<span class="size-chip">${t}</span>`).join('')}</div>
-          <button class="cta-button" data-produto-id="${item.id}" style="width:100%; border:none; cursor:pointer;">VER PRODUTO</button>
+          <button class="cta-button" data-produto-id="${item.id}" style="width:100%; border:none; cursor:pointer;">${esgotado ? 'AVISE-ME QUANDO CHEGAR' : 'VER PRODUTO'}</button>
         </div>
       `;
       card.querySelector('.cta-button').addEventListener('click', () => abrirModalProduto(item));
@@ -624,10 +632,11 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
   document.getElementById('sort-select').addEventListener('change', (e) => {
     const modo = e.target.value;
     const lista = produtosFiltradosOrdenados(searchInput.value);
-    if (modo === 'az') lista.sort((a, b) => a.nome.localeCompare(b.nome));
-    if (modo === 'za') lista.sort((a, b) => b.nome.localeCompare(a.nome));
-    if (modo === 'menor') lista.sort((a, b) => a.preco - b.preco);
-    if (modo === 'maior') lista.sort((a, b) => b.preco - a.preco);
+    const esgotado = (p) => p.em_estoque === false ? 1 : 0;
+    if (modo === 'az') lista.sort((a, b) => esgotado(a) - esgotado(b) || a.nome.localeCompare(b.nome));
+    if (modo === 'za') lista.sort((a, b) => esgotado(a) - esgotado(b) || b.nome.localeCompare(a.nome));
+    if (modo === 'menor') lista.sort((a, b) => esgotado(a) - esgotado(b) || a.preco - b.preco);
+    if (modo === 'maior') lista.sort((a, b) => esgotado(a) - esgotado(b) || b.preco - a.preco);
     renderCatalogo(lista);
   });
 
@@ -718,7 +727,7 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
       linha.innerHTML = `
         ${foto ? `<img src="${foto}">` : `<div class="adm-thumb-icon"></div>`}
         <div class="info">
-          <strong>${p.nome}${p.disponivel ? '' : ' (oculto)'}</strong>
+          <strong>${p.nome}${p.disponivel ? '' : ' (oculto)'}${p.em_estoque === false ? ' — ESGOTADO' : ''}</strong>
           <span>R$ ${formatPreco(p.preco)} · ${nomeGrupo(p.grupo_id) || 'sem grupo'}</span>
         </div>
         <div class="acoes">
@@ -812,6 +821,7 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
     document.getElementById('np-categoria').value = '';
     document.getElementById('np-preco').value = '';
     document.getElementById('np-preco-antigo').value = '';
+    document.getElementById('np-em-estoque').checked = true;
     document.getElementById('np-imagem-url').value = '';
     document.getElementById('np-descricao').value = '';
     document.getElementById('np-historia').value = '';
@@ -834,6 +844,7 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
     document.getElementById('np-categoria').value = p.categoria || '';
     document.getElementById('np-preco').value = p.preco || '';
     document.getElementById('np-preco-antigo').value = p.preco_antigo || '';
+    document.getElementById('np-em-estoque').checked = p.em_estoque !== false;
     document.getElementById('np-imagem-url').value = '';
     document.getElementById('np-descricao').value = p.descricao || '';
     document.getElementById('np-historia').value = p.historia || '';
@@ -895,6 +906,7 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
         historia: document.getElementById('np-historia').value.trim(),
         tamanhos: formTamanhos,
         disponivel: true,
+        em_estoque: document.getElementById('np-em-estoque').checked,
       };
 
       let resultado;

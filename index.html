@@ -42,11 +42,12 @@ nav a:hover{color:#777}
 .mobile-nav-links{display:none}
 
 /* HERO */
-.hero{position:relative;min-height:650px;display:flex;align-items:flex-end;overflow:hidden;background:#111;color:#fff}
+.hero{position:relative;width:100%;aspect-ratio:1536/576;overflow:hidden;background:#111;color:#fff}
 .hero-bg,.hero-bg img{position:absolute;inset:0;width:100%;height:100%}
 .hero-bg img{object-fit:cover;object-position:center}
-.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.78) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,.08) 100%),linear-gradient(0deg,rgba(0,0,0,.72),transparent 55%);z-index:1}
-.hero-inner{position:relative;z-index:2;width:100%;max-width:1280px;margin:auto;padding:110px 28px 90px}
+.hero:after{display:none}
+.hero-inner{display:none}
+.hero-cta-bar{background:#111;color:#fff;padding:26px 28px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
 .eyebrow-tag{display:inline-block;color:#fff;border:1px solid rgba(255,255,255,.45);padding:7px 12px;border-radius:30px;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:20px}
 .hero h1{font-family:Oswald,sans-serif;font-size:clamp(54px,8vw,104px);line-height:.92;text-transform:uppercase;max-width:850px;letter-spacing:-1px}
 .hero p{font-size:17px;line-height:1.6;max-width:520px;color:#eee;margin:22px 0 30px}
@@ -56,7 +57,7 @@ nav a:hover{color:#777}
 .btn-primary:hover{background:#ddd}
 .btn-secondary{border:1px solid rgba(255,255,255,.7);color:#fff}
 .btn-secondary:hover{background:#fff;color:#111}
-.hero-sub{margin-top:15px;color:#ccc;font-size:11px}
+.hero-sub{color:#ccc;font-size:11px}
 
 /* TICKER */
 .ticker-bar{background:#111;color:#fff;overflow:hidden}
@@ -220,16 +221,14 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
 
 <section class="hero">
   <div class="hero-bg"><img src="assets/imagem-produto-1.jpeg" alt="Vista a história — Garimpo do Manto" loading="eager"></div>
-  <div class="hero-inner">
-    <span class="eyebrow-tag">O seu próximo manto está aqui</span>
-    <p>Camisas que carregam histórias. Mantos garimpados para quem vive futebol, cultura e identidade.</p>
-    <div class="hero-buttons">
-      <a class="btn-primary" href="#catalogo">Explorar mantos</a>
-      <a class="btn-secondary" id="wa-hero" href="#" target="_blank" rel="noopener">Falar no WhatsApp</a>
-    </div>
-    <div class="hero-sub">Pronta entrega • atendimento direto • envio para todo o Brasil</div>
-  </div>
 </section>
+<div class="hero-cta-bar">
+  <div class="hero-buttons">
+    <a class="btn-primary" href="#catalogo">Explorar mantos</a>
+    <a class="btn-secondary" id="wa-hero" href="#" target="_blank" rel="noopener">Falar no WhatsApp</a>
+  </div>
+  <div class="hero-sub">Pronta entrega • atendimento direto • envio para todo o Brasil</div>
+</div>
 
 <div class="ticker-bar">
   <div class="ticker-track">

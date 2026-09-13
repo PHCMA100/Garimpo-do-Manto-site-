@@ -30,12 +30,14 @@ nav{flex:1}
 nav ul{display:flex;justify-content:center;gap:30px;list-style:none}
 nav a{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.4px}
 nav a:hover{color:#777}
+.nav-btn-encomenda{border:1.5px solid #111!important;border-radius:20px;padding:8px 16px;color:#111!important}
+.nav-btn-encomenda:hover{background:#111;color:#fff!important}
 .header-actions{display:flex;align-items:center;gap:10px}
 .brand-search{position:relative;width:190px}
 .brand-search input{width:100%;height:40px;border:1px solid #ddd;border-radius:22px;padding:0 14px 0 38px;background:#f7f7f7;outline:none;font-size:13px}
 .brand-search input:focus{border-color:#999;background:#fff}
 .brand-search svg{position:absolute;left:13px;top:12px;width:16px;height:16px;color:#555}
-.nav-cta{background:#111;color:#fff;padding:12px 16px;border-radius:24px;font-size:12px;font-weight:800;white-space:nowrap}
+.nav-cta{background:#20a765;color:#fff;padding:12px 16px;border-radius:24px;font-size:12px;font-weight:800;white-space:nowrap}
 .nav-cta:hover{background:#333}
 .adm-gear-btn{width:40px;height:40px;border:1px solid #ddd;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#444}
 .adm-gear-btn svg{width:18px;height:18px}
@@ -55,8 +57,8 @@ nav a:hover{color:#777}
 .btn-primary,.btn-secondary{display:inline-flex;align-items:center;justify-content:center;padding:15px 23px;border-radius:2px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.7px}
 .btn-primary{background:#fff;color:#111}
 .btn-primary:hover{background:#ddd}
-.btn-secondary{border:1px solid rgba(255,255,255,.7);color:#fff}
-.btn-secondary:hover{background:#fff;color:#111}
+.btn-secondary{background:#20a765;color:#fff;border:1px solid #20a765}
+.btn-secondary:hover{background:#1a8f56}
 .hero-sub{color:#ccc;font-size:11px}
 
 /* TICKER */
@@ -127,15 +129,15 @@ section{padding:88px 0}
 .btn-encomenda{display:inline-block;background:#fff;color:#111;padding:14px 30px;border-radius:2px;font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.7px}
 .btn-encomenda:hover{background:#ddd}
 .badge-esgotado{position:absolute;top:12px;left:12px;z-index:2;background:#B9432E;color:#fff;padding:6px 9px;font-size:9px;font-weight:800;letter-spacing:.8px}
-.produto-esgotado{opacity:.55}
+.produto-esgotado .product-image{opacity:.6}
 .produto-esgotado .product-image img{filter:grayscale(60%)}
-.produto-esgotado .cta-button{background:#ccc!important;color:#555!important;cursor:default}
+.produto-esgotado .cta-button{background:#D9362B!important;color:#fff!important;cursor:pointer}
 .product-info{padding:13px 2px 8px;display:block}
 .product-name{font-size:13px;font-weight:700;line-height:1.35;min-height:36px}
 .product-price{font-size:14px;font-weight:800;margin-top:8px}
 .product-price span{font-weight:400;color:#999;text-decoration:line-through;margin-left:5px}
 .sizes-label,.size-row{display:none}
-.cta-button{width:100%;border:0;background:#111;color:#fff;padding:13px;margin-top:13px;font-size:10px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;cursor:pointer}
+.cta-button{width:100%;border:0;background:#20a765;color:#fff;padding:13px;margin-top:13px;font-size:10px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;cursor:pointer}
 .cta-button:hover{background:#333}
 .catalogo-note{display:none}
 
@@ -205,7 +207,7 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
 <header>
   <div class="nav-inner">
     <a class="brand" href="#">
-      
+      <img class="brand-mark" src="assets/logo-gm.png" alt="Logo Garimpo do Manto">
       <span>Garimpo do Manto</span>
     </a>
     <nav>
@@ -214,6 +216,7 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
         <li><a href="#categorias">Seleções</a></li>
         <li><a href="#catalogo">Mantos</a></li>
         <li><a href="#como-funciona">Como comprar</a></li>
+        <li><a href="#encomenda" class="nav-btn-encomenda">Encomendar manto</a></li>
       </ul>
     </nav>
     <div class="header-actions">
@@ -312,7 +315,7 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
   </div>
 </section>
 
-<section class="encomenda-cta">
+<section class="encomenda-cta" id="encomenda">
   <div class="container encomenda-cta-inner">
     <h3>Não encontrou o seu manto?</h3>
     <p>A gente também faz encomenda! É só mandar o modelo que você quer pelo WhatsApp.</p>

@@ -31,8 +31,8 @@ nav ul{display:flex;justify-content:center;align-items:center;gap:14px;list-styl
 nav ul li{white-space:nowrap;flex-shrink:0}
 nav a{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap;display:inline-block}
 nav a:hover{color:#777}
-.nav-btn-encomenda{border:1.5px solid #111!important;border-radius:20px;padding:8px 14px;color:#111!important;white-space:nowrap;display:inline-block}
-.nav-btn-encomenda:hover{background:#111;color:#fff!important}
+.nav-btn-encomenda{color:#111!important;white-space:nowrap;display:inline-block;text-decoration:underline;text-underline-offset:3px}
+.nav-btn-encomenda:hover{color:#20a765!important}
 .header-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
 .brand-search{position:relative;width:150px;flex-shrink:0}
 .brand-search input{width:100%;height:40px;border:1px solid #ddd;border-radius:22px;padding:0 14px 0 38px;background:#f7f7f7;outline:none;font-size:13px}
@@ -121,7 +121,7 @@ section{padding:88px 0}
 .product-image img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
 .product-card:hover .product-image img{transform:scale(1.035)}
 .product-image .jersey-icon{width:45%;height:45%}
-.badge-disponivel{position:absolute;top:12px;left:12px;z-index:2;background:#fff;color:#111;padding:6px 9px;font-size:9px;font-weight:800;letter-spacing:.8px}
+.badge-disponivel{position:absolute;top:12px;left:12px;z-index:2;background:#20a765;color:#fff;padding:6px 9px;font-size:9px;font-weight:800;letter-spacing:.8px}
 .encomenda-cta{background:#111;color:#fff;padding:56px 24px;text-align:center}
 .encomenda-cta-inner{max-width:560px;margin:0 auto}
 .encomenda-cta h3{font-family:Oswald,sans-serif;font-size:clamp(1.5rem,4vw,2rem);text-transform:uppercase;margin-bottom:12px}
@@ -129,14 +129,18 @@ section{padding:88px 0}
 .btn-encomenda{display:inline-block;background:#fff;color:#111;padding:14px 30px;border-radius:2px;font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.7px}
 .btn-encomenda:hover{background:#ddd}
 .badge-esgotado{position:absolute;top:12px;left:12px;z-index:2;background:#B9432E;color:#fff;padding:6px 9px;font-size:9px;font-weight:800;letter-spacing:.8px}
-.produto-esgotado .product-image{opacity:.6}
-.produto-esgotado .product-image img{filter:grayscale(60%)}
+.produto-esgotado .product-image{opacity:.6;cursor:pointer}
+.produto-esgotado .product-image img{filter:grayscale(60%);transition:filter .15s ease,opacity .15s ease}
+.produto-esgotado .product-image.ver-original{opacity:1}
+.produto-esgotado .product-image.ver-original img{filter:none}
 .produto-esgotado .cta-button{background:#D9362B!important;color:#fff!important;cursor:pointer}
 .product-info{padding:13px 2px 8px;display:block}
 .product-name{font-size:13px;font-weight:700;line-height:1.35;min-height:36px}
 .product-price{font-size:14px;font-weight:800;margin-top:8px}
 .product-price span{font-weight:400;color:#999;text-decoration:line-through;margin-left:5px}
-.sizes-label,.size-row{display:none}
+.sizes-label{display:block;font-size:10px;color:#999;margin-top:10px;text-transform:uppercase;letter-spacing:.4px}
+.size-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.size-chip{border:1px solid #ddd;border-radius:4px;padding:3px 7px;font-size:10px;font-weight:700;color:#333}
 .cta-button{width:100%;border:0;background:#20a765;color:#fff;padding:13px;margin-top:13px;font-size:10px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;cursor:pointer}
 .cta-button:hover{background:#333}
 .catalogo-note{display:none}
@@ -584,6 +588,15 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
           abrirModalProduto(item);
         }
       });
+      if (esgotado){
+        const imgWrap = card.querySelector('.product-image');
+        const revelar = () => imgWrap.classList.add('ver-original');
+        const esconder = () => imgWrap.classList.remove('ver-original');
+        imgWrap.addEventListener('pointerdown', revelar);
+        imgWrap.addEventListener('pointerup', esconder);
+        imgWrap.addEventListener('pointerleave', esconder);
+        imgWrap.addEventListener('pointercancel', esconder);
+      }
       grid.appendChild(card);
     });
   }

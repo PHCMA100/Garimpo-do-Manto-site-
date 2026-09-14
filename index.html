@@ -5,6 +5,42 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Garimpo do Manto — camisas de futebol garimpadas para quem vive a paixão pelo futebol.">
 <title>Garimpo do Manto — Camisas de futebol</title>
+
+<!-- ══════════════════════════════════════════════════════════
+     GOOGLE ANALYTICS (GA4)
+     Troque G-XXXXXXXXXX pelo SEU ID de mensuração.
+     Como conseguir: analytics.google.com → Admin → Fluxos de dados
+     → seu site → copie o "ID de mensuração" (começa com G-)
+     ══════════════════════════════════════════════════════════ -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
+<!-- ══════════════════════════════════════════════════════════
+     META PIXEL (Facebook/Instagram Ads)
+     Troque SEU_PIXEL_ID pelo SEU ID do Pixel.
+     Como conseguir: business.facebook.com/events_manager
+     → seu Pixel → copie o "ID do Pixel" (só números)
+     ══════════════════════════════════════════════════════════ -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', 'SEU_PIXEL_ID');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=SEU_PIXEL_ID&ev=PageView&noscript=1"
+/></noscript>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
@@ -30,8 +66,8 @@ nav{flex:1;min-width:0;overflow:hidden}
 nav ul{display:flex;justify-content:center;align-items:center;gap:14px;list-style:none;flex-wrap:nowrap}
 nav ul li{white-space:nowrap;flex-shrink:0}
 nav a{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap;display:inline-block}
-nav a:hover{color:#777}
-.nav-btn-encomenda{color:#111!important;white-space:nowrap;display:inline-block;text-decoration:underline;text-underline-offset:3px}
+nav a:hover{color:#20a765}
+.nav-btn-encomenda{color:#111!important;white-space:nowrap;display:inline-block}
 .nav-btn-encomenda:hover{color:#20a765!important}
 .header-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
 .brand-search{position:relative;width:150px;flex-shrink:0}
@@ -131,8 +167,8 @@ section{padding:88px 0}
 .badge-esgotado{position:absolute;top:12px;left:12px;z-index:2;background:#B9432E;color:#fff;padding:6px 9px;font-size:9px;font-weight:800;letter-spacing:.8px}
 .produto-esgotado .product-image{opacity:.6;cursor:pointer}
 .produto-esgotado .product-image img{filter:grayscale(60%);transition:filter .15s ease,opacity .15s ease}
-.produto-esgotado .product-image.ver-original{opacity:1}
-.produto-esgotado .product-image.ver-original img{filter:none}
+.produto-esgotado .product-image:hover{opacity:1}
+.produto-esgotado .product-image:hover img{filter:none}
 .produto-esgotado .cta-button{background:#D9362B!important;color:#fff!important;cursor:pointer}
 .product-info{padding:13px 2px 8px;display:block}
 .product-name{font-size:13px;font-weight:700;line-height:1.35;min-height:36px}
@@ -588,15 +624,6 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
           abrirModalProduto(item);
         }
       });
-      if (esgotado){
-        const imgWrap = card.querySelector('.product-image');
-        const revelar = () => imgWrap.classList.add('ver-original');
-        const esconder = () => imgWrap.classList.remove('ver-original');
-        imgWrap.addEventListener('pointerdown', revelar);
-        imgWrap.addEventListener('pointerup', esconder);
-        imgWrap.addEventListener('pointerleave', esconder);
-        imgWrap.addEventListener('pointercancel', esconder);
-      }
       grid.appendChild(card);
     });
   }
@@ -608,6 +635,10 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
     const g = grupos.find(g => g.id === item.grupo_id);
     const usaTamanho = g ? g.usa_tamanho : true;
     const foto = (item.imagens && item.imagens[0]) ? item.imagens[0] : '';
+
+    // Rastreamento: visualização de produto
+    if (typeof fbq !== 'undefined') fbq('track', 'ViewContent', { content_name: item.nome, value: item.preco, currency: 'BRL' });
+    if (typeof gtag !== 'undefined') gtag('event', 'view_item', { items: [{ item_name: item.nome, price: item.preco }] });
 
     const conteudo = document.getElementById('produto-modal-conteudo');
     conteudo.innerHTML = `
@@ -648,6 +679,8 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
     document.getElementById('produto-modal-comprar').addEventListener('click', () => {
       let msg = `Olá! Tenho interesse na camisa: ${item.nome}.`;
       if (usaTamanho && tamanhoSelecionado) msg += ` Tamanho: ${tamanhoSelecionado}.`;
+      if (typeof fbq !== 'undefined') fbq('track', 'Contact', { content_name: item.nome });
+      if (typeof gtag !== 'undefined') gtag('event', 'generate_lead', { item_name: item.nome });
       window.open(waLink(msg), '_blank');
     });
 

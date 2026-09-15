@@ -329,7 +329,7 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
       <div><h2>Explore o garimpo</h2><p>Encontre o manto pelo universo que mais combina com você.</p></div>
     </div>
     <div class="category-grid">
-<a class="category-card category-card-image" href="#catalogo">
+<a class="category-card category-card-image" href="#catalogo" onclick="filtrarPorCategoria(event, 'Brasileirão')">
           <img class="img-brasileirao" src="assets/categoria-brasileirao.jpg" alt="Brasileirão">
           <div class="category-card-content">
             <div class="category-kicker">Paixão nacional</div>
@@ -338,7 +338,7 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
           </div>
           <div class="category-card-arrow">→</div>
         </a>
-<a class="category-card category-card-image" href="#catalogo">
+<a class="category-card category-card-image" href="#catalogo" onclick="filtrarPorCategoria(event, 'Europa')">
           <img class="img-europa" src="assets/categoria-europa.jpg" alt="Europa">
           <div class="category-card-content">
             <div class="category-kicker">Do mundo</div>
@@ -347,7 +347,7 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
           </div>
           <div class="category-card-arrow">→</div>
         </a>
-<a class="category-card category-card-image" href="#catalogo">
+<a class="category-card category-card-image" href="#catalogo" onclick="filtrarPorCategoria(event, 'Retrôs')">
           <img class="img-retro" src="assets/categoria-retro.jpg" alt="Retros">
           <div class="category-card-content">
             <div class="category-kicker">Camisas históricas</div>
@@ -356,7 +356,7 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
           </div>
           <div class="category-card-arrow">→</div>
         </a>
-<a class="category-card category-card-image" href="#catalogo">
+<a class="category-card category-card-image" href="#catalogo" onclick="filtrarPorCategoria(event, 'Seleções')">
           <img class="img-selecoes" src="assets/categoria-selecoes-trofeu.jpg" alt="Seleções">
           <div class="category-card-content">
             <div class="category-kicker">Países e histórias</div>
@@ -634,6 +634,16 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
       toolbarFiltros.insertBefore(chip, toolbarFiltros.children[i+1]);
     });
   }
+
+  // ---- CLIQUE NOS CARDS DE CATEGORIA (Explore o Garimpo) ----
+  window.filtrarPorCategoria = function(event, nomeCategoria){
+    event.preventDefault();
+    const grupoEncontrado = grupos.find(g => g.nome.trim().toLowerCase() === nomeCategoria.trim().toLowerCase());
+    filtroGrupoAtual = grupoEncontrado ? grupoEncontrado.id : null;
+    renderFiltros();
+    renderCatalogo(produtosFiltradosOrdenados(searchInput.value));
+    document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   // ---- RENDERIZA O GRID DO CATÁLOGO ----
   const grid = document.getElementById('tag-grid');

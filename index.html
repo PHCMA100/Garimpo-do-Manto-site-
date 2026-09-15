@@ -78,6 +78,12 @@ nav a:hover{color:#20a765}
 .brand-search svg{position:absolute;left:13px;top:12px;width:16px;height:16px;color:#555}
 .nav-cta{display:none}
 .adm-gear-btn{width:46px;height:46px;border:1px solid #e2e2e2;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#333;box-shadow:0 1px 3px rgba(0,0,0,0.06);transition:all .2s ease;cursor:pointer}
+.mobile-menu-btn{display:none;width:44px;height:44px;border:1px solid rgba(255,255,255,.4);background:rgba(0,0,0,.25);border-radius:50%;align-items:center;justify-content:center;color:#fff;cursor:pointer;flex-shrink:0}
+.mobile-menu-btn svg{width:20px;height:20px}
+.mobile-menu{display:none;position:absolute;top:100%;left:0;right:0;background:#111;flex-direction:column;padding:8px 20px 20px;box-shadow:0 10px 24px rgba(0,0,0,.35)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:#fff;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.mobile-menu a:last-child{border-bottom:0}
 .adm-gear-btn:hover{border-color:#111;color:#111;box-shadow:0 3px 10px rgba(0,0,0,0.12);transform:translateY(-1px)}
 .adm-gear-btn svg{width:21px;height:21px}
 .mobile-nav-links{display:none}
@@ -258,7 +264,7 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
 }
 @media (max-width:719px){
   .hero{aspect-ratio:1536/576!important;width:100%!important}
-  .container{padding:0 18px}.topbar{font-size:9px}.nav-inner{height:64px;padding:0 16px;gap:10px}.brand-wordmark{height:26px}nav{display:none}.header-actions{margin-left:auto}.brand-search{width:38px}.brand-search input{width:38px;padding:0;opacity:0;cursor:pointer}.brand-search svg{left:11px}.nav-cta{display:none}.adm-gear-btn{width:40px;height:40px}.adm-gear-btn svg{width:19px;height:19px}
+  .container{padding:0 18px}.topbar{font-size:9px}.nav-inner{height:64px;padding:0 16px;gap:10px;position:relative}.brand-wordmark{height:26px}nav{display:none}.header-actions{margin-left:auto}.brand-search{width:38px}.brand-search input{width:38px;padding:0;opacity:0;cursor:pointer}.brand-search svg{left:11px}.nav-cta{display:none}.adm-gear-btn{width:40px;height:40px}.adm-gear-btn svg{width:19px;height:19px}.mobile-menu-btn{display:flex}
   .hero-cta-bar{padding:20px 18px;flex-direction:column;align-items:stretch;text-align:center}.section-head{display:block;margin-bottom:25px}.section-head h2{margin-bottom:12px}.section-link{display:inline-block;margin-top:14px}.category-grid{grid-template-columns:1fr 1fr;gap:7px}.category-card{aspect-ratio:1.5/1;padding:12px}.category-card h3{font-size:15px}.category-kicker{font-size:8px}.category-card span{font-size:9px}.category-card-arrow{width:26px;height:26px;right:10px;bottom:10px;font-size:12px}.universo-wrap{padding:0 18px 60px}.universo-card{min-height:430px}.universo-content{padding:28px}.paths{grid-template-columns:1fr}.product-grid{grid-template-columns:1fr 1fr;gap:25px 10px}.product-name{font-size:12px}.product-price{font-size:13px}.sort-select{margin-left:0;width:100%}.footer-inner{grid-template-columns:1fr 1fr;gap:30px}.footer-inner .footer-col:first-child{grid-column:1/-1}
 }
 </style>
@@ -305,6 +311,17 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
         <button class="adm-gear-btn" id="btn-abrir-adm" aria-label="Área do administrador">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
         </button>
+        <button class="mobile-menu-btn" id="btn-abrir-menu-mobile" aria-label="Abrir menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="mobile-menu" id="mobile-menu">
+        <a href="#categorias">Clubes</a>
+        <a href="#categorias">Seleções</a>
+        <a href="#catalogo">Mantos</a>
+        <a href="#catalogo">Streetwear</a>
+        <a href="#como-funciona">Como comprar</a>
+        <a href="#encomenda">Encomendar manto</a>
       </div>
     </div>
   </header>
@@ -779,6 +796,15 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
   const searchInput = document.getElementById('site-search');
   searchInput.addEventListener('input', (e) => {
     renderCatalogo(produtosFiltradosOrdenados(e.target.value));
+  });
+
+  // ---- MENU MOBILE (hambúrguer) ----
+  const mobileMenu = document.getElementById('mobile-menu');
+  document.getElementById('btn-abrir-menu-mobile').addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => mobileMenu.classList.remove('open'));
   });
 
   // ══════════════════════════════════════════════════════════

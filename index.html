@@ -62,9 +62,11 @@ img{max-width:100%;display:block}
 .topbar-left span{display:flex;align-items:center;gap:6px;white-space:nowrap}
 .topbar-left svg{width:13px;height:13px;flex-shrink:0}
 .topbar-right{opacity:.85;white-space:nowrap;font-weight:600;letter-spacing:.3px}
-header{position:absolute;top:0;left:0;right:0;z-index:50;background:#111;border-bottom:0}
+header{position:absolute;top:0;left:0;right:0;z-index:50;background:linear-gradient(180deg,rgba(0,0,0,.78) 0%,rgba(0,0,0,.35) 70%,rgba(0,0,0,0) 100%);border-bottom:0}
 .hero-head-pop{position:absolute;left:49.5%;top:0;width:13.7%;height:auto;z-index:60;pointer-events:none;filter:drop-shadow(0 6px 10px rgba(0,0,0,.45))}
-.nav-inner{height:76px;max-width:1400px;margin:auto;padding:0 28px;display:flex;align-items:center;gap:22px;flex-wrap:nowrap}
+.nav-inner{height:76px;max-width:1400px;margin:auto;padding:0 28px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:22px}
+.nav-inner nav{justify-self:center}
+.nav-inner .header-actions{justify-self:end}
 .brand-wordmark{filter:brightness(0) invert(1);opacity:.96}
 .brand{display:flex;align-items:center;white-space:nowrap;flex-shrink:0}
 .brand-wordmark{height:34px;width:auto;object-fit:contain;display:block}
@@ -319,7 +321,7 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
       <div class="header-actions">
         <div class="brand-search">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input id="site-search" type="text" placeholder="O que você está procurando?">
+          <input id="site-search" type="text" name="busca-manto-garimpo" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="O que você está procurando?">
         </div>
         <button class="adm-gear-btn" id="btn-abrir-adm" aria-label="Área do administrador">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
@@ -808,6 +810,7 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
 
   // ---- BUSCA POR TIME ----
   const searchInput = document.getElementById('site-search');
+  searchInput.value = '';
   searchInput.addEventListener('input', (e) => {
     renderCatalogo(produtosFiltradosOrdenados(e.target.value));
   });

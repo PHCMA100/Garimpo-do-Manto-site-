@@ -57,8 +57,13 @@ img{max-width:100%;display:block}
 .container{max-width:1280px;margin:auto;padding:0 28px}
 
 /* HEADER */
-.topbar{background:#111;color:#fff;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:9px 12px}
+.topbar{background:#111;color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:9px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.topbar-left{display:flex;align-items:center;gap:22px;flex-wrap:nowrap}
+.topbar-left span{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.topbar-left svg{width:13px;height:13px;flex-shrink:0}
+.topbar-right{opacity:.85;white-space:nowrap;font-weight:600;letter-spacing:.3px}
 header{position:absolute;top:0;left:0;right:0;z-index:50;background:#111;border-bottom:0}
+.hero-head-pop{position:absolute;left:49.5%;top:0;width:13.7%;height:auto;z-index:60;pointer-events:none;filter:drop-shadow(0 6px 10px rgba(0,0,0,.45))}
 .nav-inner{height:76px;max-width:1400px;margin:auto;padding:0 28px;display:flex;align-items:center;gap:22px;flex-wrap:nowrap}
 .brand-wordmark{filter:brightness(0) invert(1);opacity:.96}
 .brand{display:flex;align-items:center;white-space:nowrap;flex-shrink:0}
@@ -286,7 +291,14 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
 </head>
 <body>
 
-<div class="topbar">ENVIO PARA TODO O BRASIL • NOVOS MANTOS TODA SEMANA • COMPRA PELO WHATSAPP</div>
+<div class="topbar">
+  <div class="topbar-left">
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="5" width="14" height="12"/><path d="M15 9h4l3 3v5h-7z"/><circle cx="6" cy="19" r="2"/><circle cx="17.5" cy="19" r="2"/></svg>Envio para todo o Brasil</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="1.5"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>Pagamento seguro</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12l9-9 11 2-2 11-9 9z"/><circle cx="15" cy="9" r="1.5"/></svg>Peças selecionadas</span>
+  </div>
+  <div class="topbar-right">Mais que camisas, é cultura.</div>
+</div>
 
 <section class="hero">
   <header>
@@ -298,7 +310,7 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
         <ul>
           <li><a href="#categorias">Clubes</a></li>
           <li><a href="#categorias">Seleções</a></li>
-          <li><a href="#catalogo">Mantos</a></li>
+          <li style="margin:0 22px"><a href="#catalogo">Mantos</a></li>
           <li><a href="#catalogo">Streetwear</a></li>
           <li><a href="#como-funciona">Como comprar</a></li>
           <li><a href="#encomenda" class="nav-btn-encomenda">Encomendar manto</a></li>
@@ -327,6 +339,7 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
     </div>
   </header>
   <div class="hero-bg"><img src="assets/imagem-produto-1.jpeg" alt="Vista a história — Garimpo do Manto" loading="eager"></div>
+  <img class="hero-head-pop" src="assets/hero-head-pop.png" alt="">
 </section>
 <div class="hero-cta-bar">
   <div class="hero-buttons">

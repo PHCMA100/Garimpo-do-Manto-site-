@@ -796,6 +796,8 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
     function montarMensagem(){
       let msg = `Olá! Tenho interesse na camisa: ${item.nome}.`;
       if (usaTamanho && tamanhoSelecionado) msg += ` Tamanho: ${tamanhoSelecionado}.`;
+      const fotoUrl = (item.imagens && item.imagens[0]) ? item.imagens[0] : '';
+      if (fotoUrl) msg += `\n\nFoto do manto: ${fotoUrl}`;
       return msg;
     }
 
@@ -1314,8 +1316,8 @@ footer{background:#111;color:#fff;padding:60px 0 28px}
             <p class="produto-modal-historia">Manto em destaque no Garimpo do Manto. Para consultar tamanho, disponibilidade e finalizar a compra, fale diretamente pelo WhatsApp.</p>
             <div class="produto-modal-secao-label">Fale com um vendedor</div>
             <div class="produto-modal-vendedores">
-              <a class="produto-modal-cta" target="_blank" rel="noopener" href="https://wa.me/5535988736223?text=${encodeURIComponent("Olá! Tenho interesse no " + p.nome + ".")}">Bianca · WhatsApp</a>
-              <a class="produto-modal-cta" target="_blank" rel="noopener" href="https://wa.me/5535988749710?text=${encodeURIComponent("Olá! Tenho interesse no " + p.nome + ".")}">Paulo Henrique · WhatsApp</a>
+              <a class="produto-modal-cta" target="_blank" rel="noopener" href="https://wa.me/5535988736223?text=${encodeURIComponent("Olá! Tenho interesse no " + p.nome + "." + (p.imagem ? "\n\nFoto do manto: " + p.imagem : ""))}">Bianca · WhatsApp</a>
+              <a class="produto-modal-cta" target="_blank" rel="noopener" href="https://wa.me/5535988749710?text=${encodeURIComponent("Olá! Tenho interesse no " + p.nome + "." + (p.imagem ? "\n\nFoto do manto: " + p.imagem : ""))}">Paulo Henrique · WhatsApp</a>
             </div>`;
           modal.classList.add("open");
         }
